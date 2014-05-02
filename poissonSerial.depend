@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1398969277 source:/home/evalero/Documentos/Dropbox/PParalelo/CUDA/poissonSerial/main.c
+	<stdio.h>
+	<stdlib.h>
+	<omp.h>
+	<time.h>
+	<math.h>
+	"includes/libpoisson.h"
+
+1398969511 /home/evalero/Documentos/Dropbox/PParalelo/CUDA/poissonSerial/includes/libpoisson.h
+
+1398992257 source:/home/evalero/Documentos/Dropbox/PParalelo/CUDA/poissonSerial/src/libpoisson.c
+	<sys/time.h>
+	<stdio.h>
+	<stdlib.h>
+	<omp.h>
+	"../includes/libpoisson.h"
+
