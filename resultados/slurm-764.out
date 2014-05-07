@@ -1,0 +1,97 @@
+nova116
+poisson_serial
+0
+/home_nfs/nbcgib/evalero/CUDA/poissonSerial
+Teste opt - 01 LONG ######################################
+Testando Poisson com 512x512
+Rodando  1
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2039140000, 10000, 0.01,  2039.14, 2039
+------ TOTAL TIME  2039.531675
+
+
+------ TOTAL TIME  2039.531686
+
+Rodando  2
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2039160000, 0, 0,  2039.16, 2039
+------ TOTAL TIME  2039.575584
+
+
+------ TOTAL TIME  2039.575593
+
+Rodando  3
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2039560000, 0, 0,  2039.56, 2040
+------ TOTAL TIME  2039.939648
+
+
+------ TOTAL TIME  2039.939656
+
+Rodando  4
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2039210000, 10000, 0.01,  2039.21, 2039
+------ TOTAL TIME  2039.595189
+
+
+------ TOTAL TIME  2039.595199
+
+Rodando  5
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2040030000, 0, 0,  2040.03, 2040
+------ TOTAL TIME  2040.412943
+
+
+------ TOTAL TIME  2040.412953
+
+Rodando  6
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2039290000, 10000, 0.01,  2039.29, 2039
+------ TOTAL TIME  2039.675943
+
+
+------ TOTAL TIME  2039.675952
+
+Testando Poisson com 1024x1024
+Rodando  1
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 81502 ------ ERRO 9.9999E-06
+------ CPU TIME 11417260000, 10000, 0.01,  11417.3, 1.142e+04
+------ TOTAL TIME  11419.387734
+
+
+------ TOTAL TIME  11419.387745
+
+Rodando  2
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 81502 ------ ERRO 9.9999E-06
+------ CPU TIME 11417440000, 10000, 0.01,  11417.4, 1.142e+04
+------ TOTAL TIME  11419.592325
+
+
+------ TOTAL TIME  11419.592336
+
+Rodando  3
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 81502 ------ ERRO 9.9999E-06
+------ CPU TIME 11417350000, 10000, 0.01,  11417.4, 1.142e+04
+------ TOTAL TIME  11419.590277
+
+
+------ TOTAL TIME  11419.590286
+

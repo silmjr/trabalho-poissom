@@ -1,0 +1,101 @@
+nova201
+poisson_serial
+0
+/home_nfs/nbcgib/evalero/CUDA/poissonSerial
+Teste opt - v1.5 GPU ######################################
+src/libpoisson.c: In function ‘internosArray’:
+src/libpoisson.c:454:9: warning: unused variable ‘stopi’ [-Wunused-variable]
+     int stopi = N*(N-2);
+         ^
+Testando Poisson com 512x512
+Rodando  1
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 1122080000, 0, 0,  1122.08, 1122
+------ TOTAL TIME  1124.036992
+
+
+------ TOTAL TIME  1124.036996
+
+Rodando  2
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 1124600000, 0, 0,  1124.6, 1125
+------ TOTAL TIME  1126.556300
+
+
+------ TOTAL TIME  1126.556304
+
+Rodando  3
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 1125400000, 0, 0,  1125.4, 1125
+------ TOTAL TIME  1127.372277
+
+
+------ TOTAL TIME  1127.372281
+
+Rodando  4
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 1119720000, 0, 0,  1119.72, 1120
+------ TOTAL TIME  1121.678810
+
+
+------ TOTAL TIME  1121.678814
+
+Rodando  5
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 1123780000, 0, 0,  1123.78, 1124
+------ TOTAL TIME  1125.736879
+
+
+------ TOTAL TIME  1125.736882
+
+Rodando  6
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 1120990000, 0, 0,  1120.99, 1121
+------ TOTAL TIME  1122.944518
+
+
+------ TOTAL TIME  1122.944521
+
+Testando Poisson com 1024x1024
+Rodando  1
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 81502 ------ ERRO 9.9999E-06
+------ CPU TIME 6532600000, 0, 0,  6532.6, 6533
+------ TOTAL TIME  6543.949654
+
+
+------ TOTAL TIME  6543.949658
+
+Rodando  2
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 81502 ------ ERRO 9.9999E-06
+------ CPU TIME 6497730000, 0, 0,  6497.73, 6498
+------ TOTAL TIME  6509.417750
+
+
+------ TOTAL TIME  6509.417754
+
+Rodando  3
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 81502 ------ ERRO 9.9999E-06
+------ CPU TIME 6529810000, 0, 0,  6529.81, 6530
+------ TOTAL TIME  6541.156250
+
+
+------ TOTAL TIME  6541.156253
+

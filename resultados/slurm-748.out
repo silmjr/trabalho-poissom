@@ -1,0 +1,78 @@
+Long - pernode 8
+--------------------------------------
+	linux-vdso.so.1 =>  (0x00007ffffc1f3000)
+	libm.so.6 => /lib64/libm.so.6 (0x00007fa41fa4d000)
+	libc.so.6 => /lib64/libc.so.6 (0x00007fa41f6bb000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007fa41fce1000)
+--------------------------------------
+Testando Malha 512 X 512
+Rodando  1
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2032000000, 20000, 0.02,  2032, 2032
+------ TOTAL TIME  2032.369733
+
+Rodando  2
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2029170000, 20000, 0.02,  2029.17, 2029
+------ TOTAL TIME  2029.573353
+
+Rodando  3
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2028340000, 20000, 0.02,  2028.34, 2028
+------ TOTAL TIME  2028.705764
+
+Rodando  4
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2029870000, 20000, 0.02,  2029.87, 2030
+------ TOTAL TIME  2030.230575
+
+Rodando  5
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2031210000, 20000, 0.02,  2031.21, 2031
+------ TOTAL TIME  2031.575246
+
+######################################
+Testando Malha 1024 X 1024
+Rodando  1
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 81502 ------ ERRO 9.9999E-06
+------ CPU TIME 11381980000, 40000, 0.04,  11382, 1.138e+04
+------ TOTAL TIME  11384.083260
+
+
+real	189m44.166s
+user	189m41.824s
+sys	0m0.176s
+Rodando  2
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 81502 ------ ERRO 9.9999E-06
+------ CPU TIME 11388590000, 50000, 0.05,  11388.6, 1.139e+04
+------ TOTAL TIME  11390.698538
+
+
+real	189m50.784s
+user	189m48.419s
+sys	0m0.194s
+Rodando  3
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 81502 ------ ERRO 9.9999E-06
+------ CPU TIME 11372900000, 50000, 0.05,  11372.9, 1.137e+04
+------ TOTAL TIME  11375.008613
+
+
+real	189m35.093s
+user	189m32.747s
+sys	0m0.180s

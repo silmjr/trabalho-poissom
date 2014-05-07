@@ -1,0 +1,97 @@
+nova201
+poisson_serial
+0
+/home_nfs/nbcgib/evalero/CUDA/poissonSerial
+Teste opt - v1.1 GPU ######################################
+Testando Poisson com 512x512
+Rodando  1
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 66 ------ ERRO   -NAN
+------ CPU TIME 1300000, 0, 0,  1.3, 1.3
+------ TOTAL TIME  1.313139
+
+
+------ TOTAL TIME  1.313142
+
+Rodando  2
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 66 ------ ERRO   -NAN
+------ CPU TIME 1300000, 0, 0,  1.3, 1.3
+------ TOTAL TIME  1.312657
+
+
+------ TOTAL TIME  1.312661
+
+Rodando  3
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 66 ------ ERRO   -NAN
+------ CPU TIME 1320000, 0, 0,  1.32, 1.32
+------ TOTAL TIME  1.321675
+
+
+------ TOTAL TIME  1.321679
+
+Rodando  4
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 66 ------ ERRO   -NAN
+------ CPU TIME 1310000, 0, 0,  1.31, 1.31
+------ TOTAL TIME  1.321589
+
+
+------ TOTAL TIME  1.321592
+
+Rodando  5
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 66 ------ ERRO   -NAN
+------ CPU TIME 1300000, 0, 0,  1.3, 1.3
+------ TOTAL TIME  1.312378
+
+
+------ TOTAL TIME  1.312381
+
+Rodando  6
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 66 ------ ERRO   -NAN
+------ CPU TIME 1310000, 0, 0,  1.31, 1.31
+------ TOTAL TIME  1.322877
+
+
+------ TOTAL TIME  1.322881
+
+Testando Poisson com 1024x1024
+Rodando  1
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 58 ------ ERRO   -NAN
+------ CPU TIME 4810000, 0, 0,  4.81, 4.81
+------ TOTAL TIME  4.820993
+
+
+------ TOTAL TIME  4.820996
+
+Rodando  2
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 58 ------ ERRO   -NAN
+------ CPU TIME 4820000, 0, 0,  4.82, 4.82
+------ TOTAL TIME  4.839471
+
+
+------ TOTAL TIME  4.839475
+
+Rodando  3
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 58 ------ ERRO   -NAN
+------ CPU TIME 4820000, 0, 0,  4.82, 4.82
+------ TOTAL TIME  4.840467
+
+
+------ TOTAL TIME  4.840471
+

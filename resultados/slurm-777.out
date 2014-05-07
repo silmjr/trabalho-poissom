@@ -1,0 +1,97 @@
+nova111
+poisson_serial
+0
+/home_nfs/nbcgib/evalero/CUDA/poissonSerial
+Teste opt - v1.1 LONG ######################################
+Testando Poisson com 512x512
+Rodando  1
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2083200000, 0, 0,  2083.2, 2083
+------ TOTAL TIME  2083.625382
+
+
+------ TOTAL TIME  2083.625386
+
+Rodando  2
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2083120000, 0, 0,  2083.12, 2083
+------ TOTAL TIME  2083.514313
+
+
+------ TOTAL TIME  2083.514316
+
+Rodando  3
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2083420000, 0, 0,  2083.42, 2083
+------ TOTAL TIME  2083.824027
+
+
+------ TOTAL TIME  2083.824031
+
+Rodando  4
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2083180000, 0, 0,  2083.18, 2083
+------ TOTAL TIME  2083.578617
+
+
+------ TOTAL TIME  2083.578622
+
+Rodando  5
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2083110000, 0, 0,  2083.11, 2083
+------ TOTAL TIME  2083.518163
+
+
+------ TOTAL TIME  2083.518166
+
+Rodando  6
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2083020000, 0, 0,  2083.02, 2083
+------ TOTAL TIME  2083.430061
+
+
+------ TOTAL TIME  2083.430065
+
+Testando Poisson com 1024x1024
+Rodando  1
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 81502 ------ ERRO 9.9999E-06
+------ CPU TIME 11660850000, 0, 0,  11660.9, 1.166e+04
+------ TOTAL TIME  11663.148359
+
+
+------ TOTAL TIME  11663.148363
+
+Rodando  2
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 81502 ------ ERRO 9.9999E-06
+------ CPU TIME 11660920000, 0, 0,  11660.9, 1.166e+04
+------ TOTAL TIME  11663.302757
+
+
+------ TOTAL TIME  11663.302761
+
+Rodando  3
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 81502 ------ ERRO 9.9999E-06
+------ CPU TIME 11660490000, 0, 0,  11660.5, 1.166e+04
+------ TOTAL TIME  11662.737653
+
+
+------ TOTAL TIME  11662.737656
+

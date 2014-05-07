@@ -29,6 +29,9 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="makefile" />
+		<Unit filename="run_poisson.srm" />
+		<Unit filename="run_poisson_GPU.srm" />
 		<Unit filename="src/libpoisson.c">
 			<Option compilerVar="CC" />
 		</Unit>

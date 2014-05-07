@@ -1,0 +1,94 @@
+nova120
+poisson_serial
+0
+/home_nfs/nbcgib/evalero/CUDA/poissonSerial
+Teste opt - 01 ######################################
+Testando Poisson com 512x512
+Rodando  1
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2097770000, 0, 0,  2097.77, 2098
+------ TOTAL TIME  2098.177155
+
+
+------ TOTAL TIME  2098.177158
+
+Rodando  2
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2100820000, 0, 0,  2100.82, 2101
+------ TOTAL TIME  2101.224885
+
+
+------ TOTAL TIME  2101.224890
+
+Rodando  3
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2090170000, 0, 0,  2090.17, 2090
+------ TOTAL TIME  2090.574701
+
+
+------ TOTAL TIME  2090.574704
+
+Rodando  4
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2100350000, 0, 0,  2100.35, 2100
+------ TOTAL TIME  2100.783323
+
+
+------ TOTAL TIME  2100.783327
+
+Rodando  5
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2100570000, 0, 0,  2100.57, 2101
+------ TOTAL TIME  2100.997156
+
+
+------ TOTAL TIME  2100.997159
+
+Rodando  6
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2100300000, 0, 0,  2100.3, 2100
+------ TOTAL TIME  2100.698306
+
+
+------ TOTAL TIME  2100.698310
+
+Testando Poisson com 1024x1024
+Rodando  1
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 81502 ------ ERRO 9.9999E-06
+------ CPU TIME 11765690000, 0, 0,  11765.7, 1.177e+04
+------ TOTAL TIME  11767.906512
+
+
+------ TOTAL TIME  11767.906516
+
+Rodando  2
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 81502 ------ ERRO 9.9999E-06
+------ CPU TIME 11765210000, 0, 0,  11765.2, 1.177e+04
+------ TOTAL TIME  11767.579673
+
+
+------ TOTAL TIME  11767.579677
+
+Rodando  3
+srun: Job step aborted: Waiting up to 2 seconds for job step to finish.
+srun: got SIGCONT
+slurmd[nova120]: *** JOB 755 CANCELLED AT 2014-05-04T10:35:02 ***
+srun: forcing job termination
+slurmd[nova120]: *** STEP 755.8 CANCELLED AT 2014-05-04T10:35:02 ***
+srun: error: nova120: task 0: Terminated

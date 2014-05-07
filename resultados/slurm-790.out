@@ -1,0 +1,22 @@
+nova201
+poisson_serial
+0
+/home_nfs/nbcgib/evalero/CUDA/poissonSerial
+Teste opt - v1.4 GPU ######################################
+Testando Poisson com 512x512
+Rodando  1
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 1120730000, 0, 0,  1120.73, 1121
+------ TOTAL TIME  1122.690839
+
+
+------ TOTAL TIME  1122.690843
+
+Rodando  2
+srun: Job step aborted: Waiting up to 2 seconds for job step to finish.
+srun: got SIGCONT
+slurmd[nova201]: *** STEP 790.1 CANCELLED AT 2014-05-06T12:29:25 ***
+slurmd[nova201]: *** JOB 790 CANCELLED AT 2014-05-06T12:29:25 ***
+srun: error: nova201: task 0: Terminated

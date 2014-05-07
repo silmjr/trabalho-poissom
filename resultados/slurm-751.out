@@ -1,0 +1,78 @@
+gpu - pernode 12
+--------------------------------------
+	linux-vdso.so.1 =>  (0x00007fff219ff000)
+	libm.so.6 => /lib64/libm.so.6 (0x00007fca6293c000)
+	libc.so.6 => /lib64/libc.so.6 (0x00007fca625aa000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007fca62bce000)
+--------------------------------------
+Testando Malha 512 X 512
+Rodando  1
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 1060940000, 20000, 0.02,  1060.94, 1061
+------ TOTAL TIME  1062.845417
+
+Rodando  2
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 1063350000, 10000, 0.01,  1063.35, 1063
+------ TOTAL TIME  1065.259482
+
+Rodando  3
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 1062680000, 10000, 0.01,  1062.68, 1063
+------ TOTAL TIME  1064.580051
+
+Rodando  4
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 1062380000, 20000, 0.02,  1062.38, 1062
+------ TOTAL TIME  1064.279280
+
+Rodando  5
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 1062710000, 10000, 0.01,  1062.71, 1063
+------ TOTAL TIME  1064.624662
+
+######################################
+Testando Malha 1024 X 1024
+Rodando  1
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 81502 ------ ERRO 9.9999E-06
+------ CPU TIME 5960100000, 30000, 0.03,  5960.1, 5960
+------ TOTAL TIME  5970.823976
+
+
+real	99m30.895s
+user	99m20.034s
+sys	0m0.084s
+Rodando  2
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 81502 ------ ERRO 9.9999E-06
+------ CPU TIME 5977130000, 40000, 0.04,  5977.13, 5977
+------ TOTAL TIME  5987.887906
+
+
+real	99m47.959s
+user	99m37.069s
+sys	0m0.082s
+Rodando  3
+
+------ MALHA 1024 x 1024
+------ PRESSAO ------- ITERACAO 81502 ------ ERRO 9.9999E-06
+------ CPU TIME 5977170000, 40000, 0.04,  5977.17, 5977
+------ TOTAL TIME  5987.930407
+
+
+real	99m48.003s
+user	99m37.105s
+sys	0m0.088s

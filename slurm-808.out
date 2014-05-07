@@ -1,0 +1,68 @@
+nova116
+poisson_serial
+0
+/home_nfs/nbcgib/evalero/CUDA/poissonSerial
+Teste opt - v1.7 LONG ######################################
+Testando Poisson com 512x512
+Rodando  1
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2097760000, 0, 0,  2097.76, 2098
+------ TOTAL TIME  2098.166285
+
+
+------ TOTAL TIME  2098.166289
+
+Rodando  2
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2097580000, 0, 0,  2097.58, 2098
+------ TOTAL TIME  2097.985123
+
+
+------ TOTAL TIME  2097.985127
+
+Rodando  3
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2097680000, 0, 0,  2097.68, 2098
+------ TOTAL TIME  2098.083198
+
+
+------ TOTAL TIME  2098.083202
+
+Rodando  4
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2097790000, 0, 0,  2097.79, 2098
+------ TOTAL TIME  2098.191395
+
+
+------ TOTAL TIME  2098.191399
+
+Rodando  5
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2097560000, 0, 0,  2097.56, 2098
+------ TOTAL TIME  2097.954901
+
+
+------ TOTAL TIME  2097.954905
+
+Rodando  6
+
+------ MALHA 512 x 512
+------ PRESSAO ------- ITERACAO 58144 ------ ERRO 1.0000E-05
+------ CPU TIME 2097640000, 0, 0,  2097.64, 2098
+------ TOTAL TIME  2098.046397
+
+
+------ TOTAL TIME  2098.046401
+
+Testando Poisson com 1024x1024
+Rodando  1

@@ -1,0 +1,7 @@
+Testando Java nos nós
+Usage: gij [OPTION] ... CLASS [ARGS] ...
+          to invoke CLASS.main, or
+       gij -jar [OPTION] ... JARFILE [ARGS] ...
+          to execute a jar file
+Try `gij --help' for more information.
+srun: error: nova117: task 0: Exited with exit code 1
