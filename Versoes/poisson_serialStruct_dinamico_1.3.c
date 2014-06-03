@@ -286,7 +286,6 @@ int main(int argc, char *argv[])
 
 	for (; ;)
 	{
-	    printf("%e\n",erro);
 
 	  	/*Cálculo da pressão e dos Fluxo sem cada elemento */
 
