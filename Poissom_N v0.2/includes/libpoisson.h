@@ -41,7 +41,7 @@ void canto_d_lArray(const int i, const int j, const int N,
                nodeSides *q,
                nodeSides *q_old,
                nodeSides *l_old,
-               double *p);
+               double *p, double *Media);
 
 void canto_u_l(const int i, const int j,    nodeMaterial **pMat,
                nodeSides **beta,
@@ -56,7 +56,7 @@ void canto_u_lArray(const int i, const int j, const int N,
                     nodeSides *q,
                     nodeSides *q_old,
                     nodeSides *l_old,
-                    double *p);
+                    double *p, double *Media);
 
 void canto_d_r(const int i, const int j,    nodeMaterial **pMat,
                nodeSides **beta,
@@ -71,7 +71,7 @@ void canto_d_rArray(const int i, const int j, const int N,
                     nodeSides *q,
                     nodeSides *q_old,
                     nodeSides *l_old,
-                    double *p);
+                    double *p, double *Media);
 
 void canto_u_r(const int i, const int j,    nodeMaterial **pMat,
                nodeSides **beta,
@@ -86,7 +86,7 @@ void canto_u_rArray(const int i, const int j, const int N,
                     nodeSides *q,
                     nodeSides *q_old,
                     nodeSides *l_old,
-                    double *p);
+                    double *p, double *Media);
 
 void fronteira_u(const int n, const int j,
                  nodeMaterial **pMat,
@@ -101,7 +101,6 @@ void fronteira_uArray(const int N, const int j,
                       nodeSides *beta,
                       nodeSides *q,
                       nodeSides *q_old,
-		      nodeSides *l,
                       nodeSides *l_old,
                       double *p, double *Media);
 
@@ -118,7 +117,6 @@ void fronteira_dArray(const int N, const int j,
                       nodeSides *beta,
                       nodeSides *q,
                       nodeSides *q_old,
-		      nodeSides *l,
                       nodeSides *l_old,
                       double *p, double *Media);
 
@@ -135,7 +133,6 @@ void fronteira_rArray(const int i, const int N,
                       nodeSides *beta,
                       nodeSides *q,
                       nodeSides *q_old,
-		      nodeSides *l,
                       nodeSides *l_old,
                       double *p, double *Media);
 
@@ -152,7 +149,6 @@ void fronteira_lArray(const int i, const int N,
                       nodeSides *beta,
                       nodeSides *q,
                       nodeSides *q_old,
-		      nodeSides *l,
                       nodeSides *l_old,
                       double *p, double *Media);
 
@@ -169,7 +165,6 @@ void internosArray(const int N,
               nodeSides *beta,
               nodeSides *q,
               nodeSides *q_old,
-              nodeSides *l,
               nodeSides *l_old,
               double *p, double *Media);
 
@@ -181,13 +176,13 @@ double lagrangeUpdate(const int n,
                       nodeSides **l_old,
                       double **p);
 
-void lagrangeUpdateArray(const int N,
+double lagrangeUpdateArray(const int N,
                       nodeSides *beta,
                       nodeSides *q,
                       nodeSides *q_old,
                       nodeSides *l,
                       nodeSides *l_old,
-                      double *p, double *Media);
+                      double *p, double *p_old, double *Media);
 
 double mediaZero(const int n,
                  double Media,
@@ -196,7 +191,7 @@ double mediaZero(const int n,
                  double **p_old);
 
 double mediaZeroArray(const int N,
-                 double *Media,
+                 double Media,
                  nodeSides *l,
                  double *p,
                  double *p_old);

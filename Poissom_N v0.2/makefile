@@ -12,9 +12,9 @@ libpoisson.o: src/libpoisson.c
 
 
 clean:
-	rm -f *.o badluk
+	rm -f *.o 
 
-	gcc -Wall -O3 -fopenmp -c main.c -o obj/Release/main.o
-	gcc -Wall -O3 -fopenmp -c src/libpoisson.c -o obj/Release/src/libpoisson.o
-	g++ -o bin/Release/poissonSerial obj/Release/main.o obj/Release/src/libpoisson.o -s -lgomp -lm
+#	gcc -Wall -O3 -fopenmp -c main.c -o obj/Release/main.o
+#	gcc -Wall -O3 -fopenmp -c src/libpoisson.c -o obj/Release/src/libpoisson.o
+#	g++ -o bin/Release/poissonSerial obj/Release/main.o obj/Release/src/libpoisson.o -s -lgomp -lm
 
