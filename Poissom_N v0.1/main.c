@@ -314,6 +314,7 @@ int main(int argc, char *argv[])
         ml = ml_old;
         ml_old = mq_aux;
         */
+	Media = 0;		
 
         p_aux = p;
         p = p_old;
@@ -350,33 +351,34 @@ int main(int argc, char *argv[])
 
         /*Fronteira U [2...N-3][N-2]*/
         //fronteira_u(n, n, mpMat, mbeta, mq, mq_old, ml_old, mp);
-        fronteira_uArray(N, n, pMat, beta, q, q_old, l_old, p);
+        fronteira_uArray(N, n, pMat, beta, q, q_old, l, l_old, p, &Media);
 
         /*Fronteira D [2...N-3][1]*/
         //fronteira_d(n, 1, mpMat, mbeta, mq, mq_old, ml_old, mp);
-        fronteira_dArray(N, 1, pMat, beta, q, q_old, l_old, p);
+        fronteira_dArray(N, 1, pMat, beta, q, q_old, l, l_old, p, &Media);
 
         /*Fronteira R [N-2][2...N-3]*/
         //fronteira_r(n, n, mpMat, mbeta, mq, mq_old, ml_old, mp);
-        fronteira_rArray(n, N, pMat, beta, q, q_old, l_old, p);
+        fronteira_rArray(n, N, pMat, beta, q, q_old, l, l_old, p, &Media);
 
         /*Fronteira L [1][2...N-3]*/
         //fronteira_l(1, n, mpMat, mbeta, mq, mq_old, ml_old, mp);
-        fronteira_lArray(1, N, pMat, beta, q, q_old, l_old, p);
+        fronteira_lArray(1, N, pMat, beta, q, q_old, l, l_old, p, &Media);
 
         /*Elementos internos [2..N-3][2..N-3]*/
         //internos(n, mpMat, mbeta, mq, mq_old, ml_old, mp);
-        internosArray(N, pMat, beta, q, q_old, l_old, p);
+	internosArray(N, pMat, beta, q, q_old, l ,l_old, p, &Media);
+
 
         /* Atualização dos multiplicadores de lagrange e calculando a média da pressão*/
         //Media = lagrangeUpdate(n, mbeta, mq, mq_old, ml, ml_old, mp);
-        Media = lagrangeUpdateArray(N, beta, q, q_old, l, l_old, p);
-
+        lagrangeUpdateArray(N, beta, q, q_old, l, l_old, p, &Media);
+	//printf("%f\n", Media);
         /* Impondo a média zero na distriubição de pressões
          * e cálculo de verificação de convergência
          */
         //erro = mediaZero(n, Media, ml, mp, mp_old);
-        erro = mediaZeroArray(N, Media, l, p, p_old);
+        erro = mediaZeroArray(N, &Media, l, p, p_old);
 
     }
     while(erro > 1e-5);

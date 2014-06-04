@@ -406,14 +406,15 @@ void fronteira_u(const int n, const int j,
 
 }
 
-/* Função para a fronteira superior U */
+/* Função para a fronteira superior U */ // RIGHT
 void fronteira_uArray(const int N, const int j,
                       nodeMaterial *pMat,
                       nodeSides *beta,
                       nodeSides *q,
                       nodeSides *q_old,
+		      nodeSides *l,
                       nodeSides *l_old,
-                      double *p)
+                      double *p, double *Media)
 {
 
     register double shi;
@@ -432,6 +433,12 @@ void fronteira_uArray(const int N, const int j,
         q[i].lf = AuxL*shi - DL;
         q[i].rh = AuxR*shi - DR;
         q[i].dn = AuxD*shi - DD;
+//
+	l[i].up = beta[i].up*(q[i].up + q_old[i+1].dn) + l_old[i+1].dn;
+        l[i].dn = beta[i].dn*(q[i].dn + q_old[i-1].up) + l_old[i-1].up;
+        l[i].rh = beta[i].rh*(q[i].rh + q_old[i+N].lf) + l_old[i+N].lf;
+        l[i].lf = beta[i].lf*(q[i].lf + q_old[i-N].rh) + l_old[i-N].rh;
+        *Media += p[i];
     }
 
 }
@@ -466,18 +473,19 @@ void fronteira_d(const int n, const int j,
 
 }
 
-/* Função para a fronteira inferior D */
+/* Função para a fronteira inferior D */ // LEFT
 void fronteira_dArray(const int N, const int j,
                       nodeMaterial *pMat,
                       nodeSides *beta,
                       nodeSides *q,
                       nodeSides *q_old,
+		      nodeSides *l,
                       nodeSides *l_old,
-                      double *p)
+                      double *p, double *Media)
 {
     register double shi;
     register int i, n = N*(N-2);
-    register double AuxU,AuxR, AuxL,DU,DR, DL;	/* Auxiliares para cada lado das celulas */
+    register double AuxU,AuxR, AuxL,DU,DR, DL;	/* Auxiliares para cada lado das celulas */ 
     for (i=2*N+j; i < n; i+=N)
     {
         shi = pMat[i].shi;
@@ -491,6 +499,12 @@ void fronteira_dArray(const int N, const int j,
         q[i].lf = AuxL*shi - DL;
         q[i].rh = AuxR*shi - DR;
         q[i].up = AuxU*shi - DU;
+//
+	l[i].up = beta[i].up*(q[i].up + q_old[i+1].dn) + l_old[i+1].dn;
+        l[i].dn = beta[i].dn*(q[i].dn + q_old[i-1].up) + l_old[i-1].up;
+        l[i].rh = beta[i].rh*(q[i].rh + q_old[i+N].lf) + l_old[i+N].lf;
+        l[i].lf = beta[i].lf*(q[i].lf + q_old[i-N].rh) + l_old[i-N].rh;
+        *Media += p[i];
     }
 
 }
@@ -525,14 +539,15 @@ void fronteira_r(const int i, const int n,
 
 }
 
-/* Função para a fronteira dereita R */
+/* Função para a fronteira dereita R */ //DOWN
 void fronteira_rArray(const int i, const int N,
                       nodeMaterial *pMat,
                       nodeSides *beta,
                       nodeSides *q,
                       nodeSides *q_old,
+		      nodeSides *l,
                       nodeSides *l_old,
-                      double *p)
+                      double *p, double *Media)
 {
 
     register double shi;
@@ -551,6 +566,12 @@ void fronteira_rArray(const int i, const int N,
         q[j].up = AuxU*shi - DU;
         q[j].dn = AuxD*shi - DD;
         q[j].lf = AuxL*shi - DL;
+//
+	l[j].up = beta[j].up*(q[j].up + q_old[j+1].dn) + l_old[j+1].dn;
+        l[j].dn = beta[j].dn*(q[j].dn + q_old[j-1].up) + l_old[j-1].up;
+        l[j].rh = beta[j].rh*(q[j].rh + q_old[j+N].lf) + l_old[j+N].lf;
+        l[j].lf = beta[j].lf*(q[j].lf + q_old[j-N].rh) + l_old[j-N].rh;
+        *Media += p[j];
     }
 
 }
@@ -585,14 +606,15 @@ void fronteira_l(const int i, const int n,
 
 }
 
-/* Função para a fronteira esquerda L */
+/* Função para a fronteira esquerda L */ // UP
 void fronteira_lArray(const int i, const int N,
                       nodeMaterial *pMat,
                       nodeSides *beta,
                       nodeSides *q,
                       nodeSides *q_old,
+		      nodeSides *l,
                       nodeSides *l_old,
-                      double *p)
+                      double *p, double *Media)
 {
     register double shi;
     register int j, n = (i+1)*N - 2 ;
@@ -611,6 +633,14 @@ void fronteira_lArray(const int i, const int N,
         q[j].up = AuxU*shi - DU;
         q[j].dn = AuxD*shi - DD;
         q[j].rh = AuxR*shi - DR;
+//
+ 	l[j].up = beta[j].up*(q[j].up + q_old[j+1].dn) + l_old[j+1].dn;
+        l[j].dn = beta[j].dn*(q[j].dn + q_old[j-1].up) + l_old[j-1].up;
+        l[j].rh = beta[j].rh*(q[j].rh + q_old[j+N].lf) + l_old[j+N].lf;
+        l[j].lf = beta[j].lf*(q[j].lf + q_old[j-N].rh) + l_old[j-N].rh;
+        *Media += p[j];
+	
+
     }
 }
 
@@ -649,7 +679,7 @@ void internos(const int n,
             q[i][j].dn = AuxD*shi - DD;
             q[i][j].lf = AuxL*shi - DL;
             p[i][j] = shi;
-        }
+        } 
 
 }
 
@@ -658,15 +688,18 @@ void internosArray(const int N,
                    nodeMaterial *pMat,
                    nodeSides *beta,
                    nodeSides *q,
-                   nodeSides *q_old,
+                   nodeSides *q_old, 
+                   nodeSides *l,
                    nodeSides *l_old,
-                   double *p)
+                   double *p,
+		   double *Media)
 {
+    //register double Media = 0.0;
     register double shi;
     register int i, j,n = N-4;
     register double AuxU, AuxD, AuxR, AuxL, DU, DD, DR, DL; /* Auxiliares para cada lado das células */
     nodeSides *q_ant, *q_pos, *q_atu, *l_ant, *l_pos, *l_atu;
-    nodeSides *beta_, *q_;
+    nodeSides *beta_, *q_, *l_;
     double *p_;
     nodeMaterial *pMat_;
 
@@ -682,13 +715,15 @@ void internosArray(const int N,
     beta_ = &beta[N+1];
     q_ = &q[N+1];
     p_ = &p[N+1];
+    l_ = &l[N+1];
 
     for (i=1; i <= n; i++)
     {
         q_ant += N;
         q_atu += N;
         q_pos += N;
-
+	
+	l_ += N;
         l_ant += N;
         l_atu += N;
         l_pos += N;
@@ -697,6 +732,7 @@ void internosArray(const int N,
         beta_ += N;
         q_ += N;
         p_ += N;
+	
         for (j=1; j <= n; j++)
         {
             shi = pMat_[j].shi;
@@ -716,8 +752,21 @@ void internosArray(const int N,
             q_[j].rh = AuxR*shi - DR;
             q_[j].dn = AuxD*shi - DD;
             q_[j].lf = AuxL*shi - DL;
+
+	//-----------------------------------------------------------------------------
+	    
+	//-----------------------------------------------------------------------------
         }
+	for (j=1; j <= n; j++)
+        {
+	    l_[j].up = beta_[j].up*(q_[j].up + q_atu[j+1].dn) + l_atu[j+1].dn;
+            l_[j].dn = beta_[j].dn*(q_[j].dn + q_atu[j-1].up) + l_atu[j-1].up;
+            l_[j].rh = beta_[j].rh*(q_[j].rh + q_pos[j].lf) + l_pos[j].lf;
+            l_[j].lf = beta_[j].lf*(q_[j].lf + q_ant[j].rh) + l_ant[j].rh;
+            *Media += p_[j];
+	}
     }
+   // return Media;
 
 }
 
@@ -748,16 +797,16 @@ double lagrangeUpdate(const int n,
 }
 
 /* Atualização dos multiplicadores de lagrange */
-double lagrangeUpdateArray(const int N,
+void lagrangeUpdateArray(const int N,
                            nodeSides *beta,
                            nodeSides *q,
                            nodeSides *q_old,
                            nodeSides *l,
                            nodeSides *l_old,
-                           double *p)
+                           double *p, double *Media)
 {
     register int i,j, n = N-2;
-    register double Media = 0.0;
+    /*//Media = 0.0;
     nodeSides *q_ant, *q_pos, *q_atu, *l_ant, *l_pos, *l_atu;
     nodeSides *beta_, *q_, *l_;
     double *p_;
@@ -791,16 +840,48 @@ double lagrangeUpdateArray(const int N,
         l_ += N;
         for (j=1; j<=n; j++)
         {
-            l_[j].up = beta_[j].up*(q_[j].up + q_atu[j+1].dn) + l_atu[j+1].dn;
-            l_[j].dn = beta_[j].dn*(q_[j].dn + q_atu[j-1].up) + l_atu[j-1].up;
-            l_[j].rh = beta_[j].rh*(q_[j].rh + q_pos[j].lf) + l_pos[j].lf;
-            l_[j].lf = beta_[j].lf*(q_[j].lf + q_ant[j].rh) + l_ant[j].rh;
-            Media += p_[j];
+		if(i==1&&j==1 || i==1&&j==n || i==n&&j==1 || i==n&&j==n){
+		
+		    l_[j].up = beta_[j].up*(q_[j].up + q_atu[j+1].dn) + l_atu[j+1].dn;
+		    l_[j].dn = beta_[j].dn*(q_[j].dn + q_atu[j-1].up) + l_atu[j-1].up;
+		    l_[j].rh = beta_[j].rh*(q_[j].rh + q_pos[j].lf) + l_pos[j].lf;
+		    l_[j].lf = beta_[j].lf*(q_[j].lf + q_ant[j].rh) + l_ant[j].rh;
+		    *Media += p_[j];
+		}
         }
     }
+*/
+	
+        j = N+1; // UL
+	l[j].up = beta[j].up*(q[j].up + q_old[j+1].dn) + l_old[j+1].dn;
+        l[j].dn = beta[j].dn*(q[j].dn + q_old[j-1].up) + l_old[j-1].up;
+	l[j].rh = beta[j].rh*(q[j].rh + q_old[j+N].lf) + l_old[j+N].lf;
+	l[j].lf = beta[j].lf*(q[j].lf + q_old[j-N].rh) + l_old[j-N].rh;
+	*Media += p[j];
+	
+	j = N*(N-2)+1; // DL
+	l[j].up = beta[j].up*(q[j].up + q_old[j+1].dn) + l_old[j+1].dn;
+        l[j].dn = beta[j].dn*(q[j].dn + q_old[j-1].up) + l_old[j-1].up;
+	l[j].rh = beta[j].rh*(q[j].rh + q_old[j+N].lf) + l_old[j+N].lf;
+	l[j].lf = beta[j].lf*(q[j].lf + q_old[j-N].rh) + l_old[j-N].rh;
+	*Media += p[j];
 
-    Media /= (n*n);
-    return Media;
+	j = 2*N-2; // UR
+	l[j].up = beta[j].up*(q[j].up + q_old[j+1].dn) + l_old[j+1].dn;
+        l[j].dn = beta[j].dn*(q[j].dn + q_old[j-1].up) + l_old[j-1].up;
+	l[j].rh = beta[j].rh*(q[j].rh + q_old[j+N].lf) + l_old[j+N].lf;
+	l[j].lf = beta[j].lf*(q[j].lf + q_old[j-N].rh) + l_old[j-N].rh;
+	*Media += p[j];
+
+	j = N*(N-1)-2; // DR
+	l[j].up = beta[j].up*(q[j].up + q_old[j+1].dn) + l_old[j+1].dn;
+        l[j].dn = beta[j].dn*(q[j].dn + q_old[j-1].up) + l_old[j-1].up;
+	l[j].rh = beta[j].rh*(q[j].rh + q_old[j+N].lf) + l_old[j+N].lf;
+	l[j].lf = beta[j].lf*(q[j].lf + q_old[j-N].rh) + l_old[j-N].rh;
+	*Media += p[j];
+
+	*Media /= (n*n);
+    
 }
 
 /* Impondo a média zero na distriubição de pressões
@@ -838,7 +919,7 @@ double mediaZero(const int n,
  * e cálculo de verificação de convergência */
 
 double mediaZeroArray(const int N,
-                      double Media,
+                      double *Media,
                       nodeSides *l,
                       double *p,
                       double *p_old)
@@ -853,7 +934,7 @@ double mediaZeroArray(const int N,
     p__ = &p_old[0];
     l_ = &l[0];
 
-    pj = Media;
+    pj = *Media;
 
     for (i=1; i <= n; i++)
     {
@@ -871,7 +952,7 @@ double mediaZeroArray(const int N,
             aux = pj - p__[j];
             sum1 += (aux*aux);
             sum2 += (pj*pj);
-            pj = Media;
+            pj = *Media;
         }
     }
 

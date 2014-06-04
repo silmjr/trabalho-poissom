@@ -101,8 +101,9 @@ void fronteira_uArray(const int N, const int j,
                       nodeSides *beta,
                       nodeSides *q,
                       nodeSides *q_old,
+		      nodeSides *l,
                       nodeSides *l_old,
-                      double *p);
+                      double *p, double *Media);
 
 void fronteira_d(const int n, const int j,
                  nodeMaterial **pMat,
@@ -117,8 +118,9 @@ void fronteira_dArray(const int N, const int j,
                       nodeSides *beta,
                       nodeSides *q,
                       nodeSides *q_old,
+		      nodeSides *l,
                       nodeSides *l_old,
-                      double *p);
+                      double *p, double *Media);
 
 void fronteira_r(const int i, const int n,
                  nodeMaterial **pMat,
@@ -133,8 +135,9 @@ void fronteira_rArray(const int i, const int N,
                       nodeSides *beta,
                       nodeSides *q,
                       nodeSides *q_old,
+		      nodeSides *l,
                       nodeSides *l_old,
-                      double *p);
+                      double *p, double *Media);
 
 void fronteira_l(const int i, const int n,
                  nodeMaterial **pMat,
@@ -149,8 +152,9 @@ void fronteira_lArray(const int i, const int N,
                       nodeSides *beta,
                       nodeSides *q,
                       nodeSides *q_old,
+		      nodeSides *l,
                       nodeSides *l_old,
-                      double *p);
+                      double *p, double *Media);
 
 void internos(const int n,
               nodeMaterial **pMat,
@@ -165,8 +169,9 @@ void internosArray(const int N,
               nodeSides *beta,
               nodeSides *q,
               nodeSides *q_old,
+              nodeSides *l,
               nodeSides *l_old,
-              double *p);
+              double *p, double *Media);
 
 double lagrangeUpdate(const int n,
                       nodeSides **beta,
@@ -176,13 +181,13 @@ double lagrangeUpdate(const int n,
                       nodeSides **l_old,
                       double **p);
 
-double lagrangeUpdateArray(const int N,
+void lagrangeUpdateArray(const int N,
                       nodeSides *beta,
                       nodeSides *q,
                       nodeSides *q_old,
                       nodeSides *l,
                       nodeSides *l_old,
-                      double *p);
+                      double *p, double *Media);
 
 double mediaZero(const int n,
                  double Media,
@@ -191,7 +196,7 @@ double mediaZero(const int n,
                  double **p_old);
 
 double mediaZeroArray(const int N,
-                 double Media,
+                 double *Media,
                  nodeSides *l,
                  double *p,
                  double *p_old);
