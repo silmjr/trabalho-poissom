@@ -12,15 +12,22 @@ int main(int argc, char *argv[])
 //int main(void)
 {
     int N;
-    if(argc != 2)
+    int amountThreads;
+    int localSize;
+
+
+    if(argc != 3)
     {
-        errorMsg("Erro na execucao!\nEx. ./[nome_executavel] [tamanho_da_malha+2]\n");
+        errorMsg("Erro na execucao!\nEx. ./[nome_executavel] [tamanho_da_malha+2] [quantidade_de_threads]\n");
         return (1);
     }
     else
     {
         N = atoi(argv[1]);
+        amountThreads = atoi(argv[2]);
     }
+
+    localSize = (N-2) / amountThreads;
 
     /*
      * Fluxos atuais e antigos em cada um dos lados da célula espacial
@@ -101,7 +108,7 @@ int main(int argc, char *argv[])
     int i, j, k, n;
     double  h, aux,
             c = 1.,                 /* Valor para o calculo de beta */
-            Media, erro,            /* Media das pressoes e erro na norma */
+            Media, MediaTotal, erro,            /* Media das pressoes e erro na norma */
             Keff;                   /* Valor medio da permeabilidade */
     //double **mp_aux;                /* Ponteiros para troca */
     double *p_aux;
@@ -297,92 +304,99 @@ int main(int argc, char *argv[])
     /*
      * Ciclo até convergência do problema
      */
-    k = 0;   //quantidade de iterações
 
-    do
+    #pragma omp parallel num_threads(amountThreads) default(shared) private(Media)
     {
-	Media =0;
-        /*
-        mp_aux = mp;
-        mp = mp_old;
-        mp_old = mp_aux;
+        k = 0;   //quantidade de iterações
+        do
+        {
+            Media =0;
+            #pragma omp master
+            {
+                MediaTotal =0;
+                /*
+                mp_aux = mp;
+                mp = mp_old;
+                mp_old = mp_aux;
 
-        mq_aux = mq;
-        mq = mq_old;
-        mq_old = mq_aux;
+                mq_aux = mq;
+                mq = mq_old;
+                mq_old = mq_aux;
 
-        mq_aux = ml;
-        ml = ml_old;
-        ml_old = mq_aux;
-        */
+                mq_aux = ml;
+                ml = ml_old;
+                ml_old = mq_aux;
+                */
 
-        p_aux = p;
-        p = p_old;
-        p_old = p_aux;
+                p_aux = p;
+                p = p_old;
+                p_old = p_aux;
 
-        q_aux = q;
-        q = q_old;
-        q_old = q_aux;
+                q_aux = q;
+                q = q_old;
+                q_old = q_aux;
 
-        q_aux = l;
-        l = l_old;
-        l_old = q_aux;
+                q_aux = l;
+                l = l_old;
+                l_old = q_aux;
 
-        k++;
-        //printf("Iteração %d \n",k);
+                k++;
+                //printf("Iteração %d \n",k);
 
-        /*Cálculo da pressão e dos fluxos em cada elemento */
+                /*Cálculo da pressão e dos fluxos em cada elemento */
 
-        /*Canto inferior esquerdo [1][1]*/
-        //canto_d_l(1, 1, mpMat, mbeta, mq, mq_old, ml_old, mp);
-        canto_d_lArray(1, 1, N, pMat, beta, q, q_old, l_old, p, &Media);
+                /*Canto inferior esquerdo [1][1]*/
+                //canto_d_l(1, 1, mpMat, mbeta, mq, mq_old, ml_old, mp);
+                canto_d_lArray(1, 1, N, pMat, beta, q, q_old, l_old, p, &Media);
+                //printf("%f\n",Media);
+                /*Canto superior esquerdo [1][N-2]*/
+                //canto_u_l(1, n, mpMat, mbeta, mq, mq_old, ml_old, mp);
+                canto_u_lArray(1, n, N, pMat, beta, q, q_old, l_old, p, &Media);
 
-//	printf("%f\n",Media);
-        /*Canto superior esquerdo [1][N-2]*/
-        //canto_u_l(1, n, mpMat, mbeta, mq, mq_old, ml_old, mp);
-        canto_u_lArray(1, n, N, pMat, beta, q, q_old, l_old, p, &Media);
+                /*Canto inferior direito [N-2][1]*/
+                //canto_d_r(n, 1, mpMat, mbeta, mq, mq_old, ml_old, mp);
+                canto_d_rArray(n, 1, N, pMat, beta, q, q_old, l_old, p, &Media);
 
-        /*Canto inferior direito [N-2][1]*/
-        //canto_d_r(n, 1, mpMat, mbeta, mq, mq_old, ml_old, mp);
-        canto_d_rArray(n, 1, N, pMat, beta, q, q_old, l_old, p, &Media);
+                /*Canto superior direito [N-2][N-2]*/
+                //canto_u_r(n, n, mpMat, mbeta, mq, mq_old, ml_old, mp);
+                canto_u_rArray(n, n, N, pMat, beta, q, q_old, l_old, p, &Media);
 
-        /*Canto superior direito [N-2][N-2]*/
-        //canto_u_r(n, n, mpMat, mbeta, mq, mq_old, ml_old, mp);
-        canto_u_rArray(n, n, N, pMat, beta, q, q_old, l_old, p, &Media);
+                /*Fronteira U [2...N-3][N-2]*/
+                //fronteira_u(n, n, mpMat, mbeta, mq, mq_old, ml_old, mp);
+                fronteira_uArray(N, n, pMat, beta, q, q_old, l_old, p, &Media);
 
-        /*Fronteira U [2...N-3][N-2]*/
-        //fronteira_u(n, n, mpMat, mbeta, mq, mq_old, ml_old, mp);
-        fronteira_uArray(N, n, pMat, beta, q, q_old, l_old, p, &Media);
+                /*Fronteira D [2...N-3][1]*/
+                //fronteira_d(n, 1, mpMat, mbeta, mq, mq_old, ml_old, mp);
+                fronteira_dArray(N, 1, pMat, beta, q, q_old, l_old, p, &Media);
 
-        /*Fronteira D [2...N-3][1]*/
-        //fronteira_d(n, 1, mpMat, mbeta, mq, mq_old, ml_old, mp);
-        fronteira_dArray(N, 1, pMat, beta, q, q_old, l_old, p, &Media);
+                /*Fronteira R [N-2][2...N-3]*/
+                //fronteira_r(n, n, mpMat, mbeta, mq, mq_old, ml_old, mp);
+                fronteira_rArray(n, N, pMat, beta, q, q_old, l_old, p, &Media);
 
-        /*Fronteira R [N-2][2...N-3]*/
-        //fronteira_r(n, n, mpMat, mbeta, mq, mq_old, ml_old, mp);
-        fronteira_rArray(n, N, pMat, beta, q, q_old, l_old, p, &Media);
+                /*Fronteira L [1][2...N-3]*/
+                //fronteira_l(1, n, mpMat, mbeta, mq, mq_old, ml_old, mp);
+                fronteira_lArray(1, N, pMat, beta, q, q_old, l_old, p, &Media);
 
-        /*Fronteira L [1][2...N-3]*/
-        //fronteira_l(1, n, mpMat, mbeta, mq, mq_old, ml_old, mp);
-        fronteira_lArray(1, N, pMat, beta, q, q_old, l_old, p, &Media);
+                /*Elementos internos [2..N-3][2..N-3]*/
+                //internos(n, mpMat, mbeta, mq, mq_old, ml_old, mp);
+                Media += internosArray(N, pMat, beta, q, q_old, l_old, p, 0, localSize, amountThreads);
+                Media += internosArray(N, pMat, beta, q, q_old, l_old, p, 1, localSize, amountThreads);
+                Media += internosArray(N, pMat, beta, q, q_old, l_old, p, 2, localSize, amountThreads);
+                Media += internosArray(N, pMat, beta, q, q_old, l_old, p, 3, localSize, amountThreads);
 
-        /*Elementos internos [2..N-3][2..N-3]*/
-        //internos(n, mpMat, mbeta, mq, mq_old, ml_old, mp);
-        internosArray(N, pMat, beta, q, q_old, l_old, p, &Media);
-
-        /* Atualização dos multiplicadores de lagrange e calculando a média da pressão*/
-        //Media = lagrangeUpdate(n, mbeta, mq, mq_old, ml, ml_old, mp);
-        erro = lagrangeUpdateArray(N, beta, q, q_old, l, l_old, p, p_old, &Media);
-	//printf("%f\n", Media);
-        /* Impondo a média zero na distriubição de pressões
-         * e cálculo de verificação de convergência
-         */
-        //erro = mediaZero(n, Media, ml, mp, mp_old);
-        //erro = mediaZeroArray(N, Media, l, p, p_old);
+                /* Atualização dos multiplicadores de lagrange e calculando a média da pressão*/
+                //Media = lagrangeUpdate(n, mbeta, mq, mq_old, ml, ml_old, mp);
+                erro = lagrangeUpdateArray(N, beta, q, q_old, l, l_old, p, p_old, &Media);
+                //printf("%f\n", Media);
+                /* Impondo a média zero na distriubição de pressões
+                 * e cálculo de verificação de convergência
+                 */
+                //erro = mediaZero(n, Media, ml, mp, mp_old);
+                //erro = mediaZeroArray(N, Media, l, p, p_old);
+            }
+        }while(erro > 1e-5);
 
     }
-    while(erro > 1e-5);
-
 
     //free(mpMat);
     free(pMat);

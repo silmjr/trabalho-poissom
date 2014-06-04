@@ -160,13 +160,13 @@ void internos(const int n,
               nodeSides **l_old,
               double **p);
 
-void internosArray(const int N,
+double internosArray(const int N,
               nodeMaterial *pMat,
               nodeSides *beta,
               nodeSides *q,
               nodeSides *q_old,
               nodeSides *l_old,
-              double *p, double *Media);
+              double *p, int threadID, int localSize, int amountThreads);
 
 double lagrangeUpdate(const int n,
                       nodeSides **beta,

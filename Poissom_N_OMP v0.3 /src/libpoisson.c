@@ -563,7 +563,7 @@ void fronteira_rArray(const int i, const int N,
         q[j].up = AuxU*shi - DU;
         q[j].dn = AuxD*shi - DD;
         q[j].lf = AuxL*shi - DL;
-	
+
 	*Media += shi;
     }
 
@@ -664,19 +664,19 @@ void internos(const int n,
             q[i][j].rh = AuxR*shi - DR;
             q[i][j].dn = AuxD*shi - DD;
             q[i][j].lf = AuxL*shi - DL;
-            p[i][j] = shi; 
-        } 
+            p[i][j] = shi;
+        }
 
 }
 
 /* Função para os nós internos */
-void internosArray(const int N,
+double internosArray(const int N,
                    nodeMaterial *pMat,
                    nodeSides *beta,
                    nodeSides *q,
-                   nodeSides *q_old, 
+                   nodeSides *q_old,
                    nodeSides *l_old,
-                   double *p, double *Media)
+                   double *p, int threadID, int localSize, int amountThreads)
 {
     register double shi;
     register int i, j,n = N-4;
@@ -684,23 +684,25 @@ void internosArray(const int N,
     nodeSides *q_ant, *q_pos, *q_atu, *l_ant, *l_pos, *l_atu;
     nodeSides *beta_, *q_;
     double *p_;
+    double Media=0;
+    int verticalMove;
+
     nodeMaterial *pMat_;
 
-    q_ant = &q_old[1];
+    q_ant = &q_old[1 + (threadID*N*localSize)];
     q_atu = q_ant + N;
     q_pos = q_atu + N;
 
-    l_ant = &l_old[1];
+    l_ant = &l_old[1 + (threadID*N*localSize)];
     l_atu = l_ant + N;
     l_pos = l_atu + N;
 
-    pMat_ = &pMat[N+1];
-    beta_ = &beta[N+1];
-    q_ = &q[N+1];
-    p_ = &p[N+1];
+    pMat_ = &pMat[N+1 + (threadID*N*localSize)];
+    beta_ = &beta[N+1 + (threadID*N*localSize)];
+    q_ = &q[N+1 + (threadID*N*localSize)];
+    p_ = &p[N+1 + (threadID*N*localSize)];
 
-    for (i=1; i <= n; i++)
-    {
+    if(threadID==0){
         q_ant += N;
         q_atu += N;
         q_pos += N;
@@ -713,8 +715,21 @@ void internosArray(const int N,
         beta_ += N;
         q_ += N;
         p_ += N;
+    }
+
+    if(threadID == 0 || threadID == amountThreads-1){
+        verticalMove = localSize -1;
+    }
+    else{
+        verticalMove = localSize;
+    }
+
+    for (i=0; i < verticalMove; i++)
+    {
         for (j=1; j <= n; j++)
         {
+            //printf("%d, %d\n", omp_get_thread_num(), j);
+
             shi = pMat_[j].shi;
             AuxU = shi/(1+beta_[j].up*shi);
             AuxR = shi/(1+beta_[j].rh*shi);
@@ -733,12 +748,23 @@ void internosArray(const int N,
             q_[j].dn = AuxD*shi - DD;
             q_[j].lf = AuxL*shi - DL;
 
-	    *Media += shi;
+            Media += shi;
         }
+        q_ant += N;
+        q_atu += N;
+        q_pos += N;
+
+        l_ant += N;
+        l_atu += N;
+        l_pos += N;
+
+        pMat_ += N;
+        beta_ += N;
+        q_ += N;
+        p_ += N;
     }
-
+    return Media;
 }
-
 /* Atualização dos multiplicadores de lagrange */
 double lagrangeUpdate(const int n,
                       nodeSides **beta,
@@ -781,9 +807,9 @@ double lagrangeUpdateArray(const int N,
     double *p_, *p__;
     register double sum1, sum2, aux, pj;
 
-    *Media /= (n*n);  
+    *Media /= (n*n);
 
-    q_atu = &q_old[0]; 
+    q_atu = &q_old[0];
     q_ant = q_atu - N;
     q_pos = q_atu + N;
 
@@ -826,13 +852,13 @@ double lagrangeUpdateArray(const int N,
             sum1 += (aux*aux);
             sum2 += (pj*pj);
             pj = *Media;
-	
+
         }
     }
 
 /*Erro relativo entre a pressão atual e anterior*/
     return sqrt(sum1/sum2);
-    
+
 }
 
 /* Impondo a média zero na distriubição de pressões
